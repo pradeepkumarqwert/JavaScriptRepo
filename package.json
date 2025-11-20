@@ -11,6 +11,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "appium": "^3.1.1",
     "chromedriver": "^142.0.3",
     "geckodriver": "^6.0.2",
     "selenium-webdriver": "^4.38.0"
