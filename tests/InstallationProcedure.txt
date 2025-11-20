@@ -1,0 +1,66 @@
+Set-up guidance for JavaScript:
+1. Install nodejs
+1.	Navigate to https://nodejs.org/en/download and install node.js for windows
+2.	After installation open cmd as administrative and hit this command <npn -v> or <node –v>
+2. Set up VS Code
+•	Download and install VS Code.
+•	Recommended extensions:
+o	JavaScript (ES6) code snippets
+o	Debugger for Chrome
+o	Node.js Extension Pack
+________________________________________
+3. Create a new project folder
+•	Open VS Code.
+•	Create a folder for your Selenium project.
+•	Open terminal in VS Code (Ctrl+`).
+
+Open PowerShell as administrator and hit the following commands:
+<Get-ExecutionPolicy> - This show the installation policy
+<Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned>
+
+We are doing this because npm in not digitally signed so to overcome the cons we need to change ExecutionPolicy into RemoteSigned
+Initialize Node.js project:
+npm init -y
+This will create a package.json file.
+________________________________________
+4. Install Selenium WebDriver for JavaScript
+Run in terminal:
+npm install selenium-webdriver
+Optional but recommended:
+•	chromedriver (for Chrome browser):
+npm install chromedriver
+•	geckodriver (for Firefox browser):
+npm install geckodriver
+________________________________________
+5. (Optional) Install a test framework
+For structured tests, you can use Mocha or Jest:
+npm install mocha --save-dev
+Then you can run tests using:
+npx mocha
+________________________________________
+6. Verify your setup
+Create a test file: test.js
+const { Builder, By, Key, until } = require('selenium-webdriver');
+
+(async function example() {
+    let driver = await new Builder().forBrowser('chrome').build();
+    try {
+        await driver.get('https://www.google.com');
+        await driver.findElement(By.name('q')).sendKeys('Selenium', Key.RETURN);
+        await driver.wait(until.titleContains('Selenium'), 1000);
+    } finally {
+        await driver.quit();
+    }
+})();
+Run it in terminal:
+node test.js
+If Chrome opens, navigates to Google, searches for "Selenium" and closes — setup is successful.
+________________________________________
+✅ Summary of Prerequisites
+1.	Node.js and npm installed.
+2.	VS Code installed with recommended extensions.
+3.	Project folder initialized with npm init.
+4.	Selenium WebDriver installed via npm.
+5.	Browser driver installed (chromedriver/geckodriver).
+6.	(Optional) Test framework like Mocha/Jest.
+3.	
